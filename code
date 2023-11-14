@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Сайт</title>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Привіт, світ!</a>
+    <a href="currency.html">Курс валют</a>
+    <a href="weather.html">Погода в Києві</a>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h1>Привіт, світ!</h1>
+    </section>
+
+    <section id="currency">
+      <h1>Курс валют</h1>
+
+      <p>
+        <strong>Долар США:</strong>
+        <span id="usd"></span>
+      </p>
+
+      <p>
+        <strong>Євро:</strong>
+        <span id="eur"></span>
+      </p>
+
+      <script src="https://api.exchangeratesapi.io/latest?base=UAH"></script>
+      <script>
+        const usd = document.querySelector("#usd");
+        const eur = document.querySelector("#eur");
+
+        const rates = JSON.parse(document.querySelector("script").textContent);
+
+        usd.textContent = rates.rates.USD;
+        eur.textContent = rates.rates.EUR;
+      </script>
+    </section>
+
+    <section id="weather">
+      <h1>Погода в Києві</h1>
+
+      <p>
+        <strong>Температура:</strong>
+        <span id="temperature"></span>
+      </p>
+
+      <p>
+        <strong>Вологість:</strong>
+        <span id="humidity"></span>
+      </p>
+
+      <p>
+        <strong>Вітер:</strong>
+        <span id="wind"></span>
+      </p>
+
+      <script src="https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=YOUR_API_KEY"></script>
+      <script>
+        const temperature = document.querySelector("#temperature");
+        const humidity = document.querySelector("#humidity");
+        const wind = document.querySelector("#wind");
+
+        const weather = JSON.parse(document.querySelector("script").textContent);
+
+        temperature.textContent = weather.main.temp;
+        humidity.textContent = weather.main.humidity;
+        wind.textContent = weather.wind.speed;
+      </script>
+    </section>
+  </main>
+</body>
+</html>
